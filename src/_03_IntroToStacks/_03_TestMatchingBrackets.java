@@ -1,14 +1,17 @@
 package _03_IntroToStacks;
 
+import org.junit.jupiter.api.Test;
+
+/*
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Stack;
 
 import org.junit.Test;
-
+*/
 public class _03_TestMatchingBrackets {
-
+/*
 	@Test
 	public void testMatchingBrackets() {
 		assertTrue(doBracketsMatch("{}"));
@@ -23,5 +26,5 @@ public class _03_TestMatchingBrackets {
 		
 		return false;
 	}
-
+*/
 }
