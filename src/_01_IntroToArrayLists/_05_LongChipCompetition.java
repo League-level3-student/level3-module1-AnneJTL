@@ -15,8 +15,23 @@ public class _05_LongChipCompetition {
 	private ArrayList<Beatle> theBeatles = new ArrayList<Beatle>();
 
 	public static void main(String[] args) {
+	    String winner = "";
+	    double longuestChipSize = -1.0;
 		_05_LongChipCompetition lcc = new _05_LongChipCompetition();
-		
+
+		lcc.initializeBeatles();
+		// We test all the singers
+        for (Beatle aSinger: lcc.getTheBand()) {
+            // We check each chip
+            for (Chip aParticulatChip : aSinger.getChips())
+            {
+                if (aParticulatChip.getLength() > longuestChipSize){
+                    longuestChipSize = aParticulatChip.getLength();
+                    winner = aSinger.getName();
+                }
+            }
+        }
+        System.out.println("The winner is " + winner + ", his largest chip is " + longuestChipSize + " cms.");
 	}
 	
 	private void initializeBeatles() {
