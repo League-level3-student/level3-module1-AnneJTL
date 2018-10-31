@@ -3,8 +3,6 @@ package _01_IntroToArrayLists;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.JOptionPane;
-
 public class _05_LongChipCompetition {
 	/**
 	 * The Beatles are eating lunch and playing a game to see who has the longest
@@ -44,8 +42,8 @@ public class _05_LongChipCompetition {
 		theBeatles.add(paul);
 		theBeatles.add(ringo);
 	}
-	
-	public ArrayList<Beatle> getTheBand(){
+
+    private ArrayList<Beatle> getTheBand() {
 		return theBeatles;
 	}
 }
@@ -54,7 +52,7 @@ class Beatle {
 	private String name;
 	private ArrayList<Chip> chips = new ArrayList<Chip>();
 
-	public Beatle(String name) {
+    Beatle(String name) {
 		this.name = name;
 		initializePlateOfChips();
 	}
@@ -66,11 +64,11 @@ class Beatle {
 		}
 	}
 
-	public ArrayList<Chip> getChips() {
+    ArrayList<Chip> getChips() {
 		return this.chips;
 	}
 
-	public String getName() {
+    String getName() {
 		return this.name;
 	}
 }
@@ -78,7 +76,7 @@ class Beatle {
 class Chip {
 	private double length;
 
-	public double getLength() {
+    double getLength() {
 		return length;
 	}
 
