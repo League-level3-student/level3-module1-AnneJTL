@@ -11,6 +11,7 @@ package _01_IntroToArrayLists;
 */
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import javax.swing.JOptionPane;
@@ -22,17 +23,62 @@ public class _03_MurderOfCrows {
     public static void main(String[] args) {
         _03_MurderOfCrows murderOfCrows = new _03_MurderOfCrows();
         murderOfCrows.initializeCrows();
-        murderOfCrows.findTheDiamond();
+
+
+        for (Crow aCrow:murderOfCrows.theMurder) {
+            System.out.print(aCrow.getName() + "\t");
+        }
+        murderOfCrows.findTheDiamondBooleanVersion();
+        murderOfCrows.findTheDiamondLabelsVersion();
+
     }
 
-    private void findTheDiamond() {
+    private void findTheDiamondLabelsVersion() {
+        /*
+         * 1. One of the Crows has eaten the diamond. You need to search through the stomach of each Crow,
+         * then print the name of the guilty Crow.
+         */
+        int innocent = 0;
+         CROW: for (Crow aCrow:theMurder) {
+            List<String> stomachCrow = aCrow.getStomachContents();
+            STOMACH: for (String aStomachContent: stomachCrow) {
+                if (aStomachContent.equalsIgnoreCase("diamond")){
+                    System.out.println("The guilty crow is " + aCrow.getName());
+                    break CROW;
+                }
+            }
+            innocent++;
+        }
+
+        /* 2. How many innocent crows had to die before the diamond was found? */
+        System.out.println(innocent + " is/are killed.");
+    }
+
+    private void findTheDiamondBooleanVersion() {
         /*
          * 1. One of the Crows has eaten the diamond. You need to search through the stomach of each Crow, 
          * then print the name of the guilty Crow.
          */
+        int innocent = 0;
+        boolean isFound = false;
+        for (Crow aCrow:theMurder) {
+            if (isFound){
+                break;
+            }
+            List<String> stomachCrow = aCrow.getStomachContents();
+            for (String aStomachContent: stomachCrow) {
+                if (aStomachContent.equalsIgnoreCase("diamond")){
+                    System.out.println("The guilty crow is " + aCrow.getName());
+                    isFound = true;
+                    break;
+                }
+            }
+            if (!isFound)
+                innocent++;
+        }
         
         /* 2. How many innocent crows had to die before the diamond was found? */
-    	
+        System.out.println(innocent + " is/are killed.");
     }
 
     private void initializeCrows() {
