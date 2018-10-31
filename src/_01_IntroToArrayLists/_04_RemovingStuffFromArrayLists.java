@@ -1,6 +1,7 @@
 package _01_IntroToArrayLists;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Copyright The League of Amazing Programmers 2013-2017 Level 3 Two ArrayList
@@ -34,9 +35,28 @@ public class _04_RemovingStuffFromArrayLists {
 
 		System.out.println(stuffIFoundInTheYard.size());
 
-		/* TODO 1: Clean out the dirt but keep the delicious worms. */
-		
-		
+		/* TODO 1 V1: Clean out the dirt but keep the delicious worms. */
+        // Version 1: in the reverse order (if not, you miss some elements)
+        /*
+		for (int i=stuffIFoundInTheYard.size()-1; i>=0; i--){
+		    Stuff thisStuff = stuffIFoundInTheYard.get(i);
+            if (thisStuff instanceof Dirt) {
+                stuffIFoundInTheYard.remove(i);
+            }
+        }
+		*/
+
+        /* TODO 1 V2: Clean out the dirt but keep the delicious worms. */
+        // Version 2: with an iterator
+
+        Iterator<Stuff> stuffIterator = stuffIFoundInTheYard.iterator();
+        while (stuffIterator.hasNext()) {
+
+            Stuff thisStuff = stuffIterator.next();
+            if (thisStuff instanceof Dirt) {
+                stuffIterator.remove();
+            }
+        }
 		
 		
 		System.out.println(stuffIFoundInTheYard.size()); // should be 2
@@ -74,8 +94,16 @@ public class _04_RemovingStuffFromArrayLists {
 		truth.add('r');
 		truth.add('#');
 		/* TODO 2: Remove the hash symbols and print out the truth. */
+        Iterator<Character> hashSymbolIterator = truth.iterator();
+        while (hashSymbolIterator.hasNext()){
+            Character symbole = hashSymbolIterator.next();
+            if (symbole == '#')
+                hashSymbolIterator.remove();
+        }
 
-		
+        for (Character aCar: truth) {
+            System.out.print(aCar);
+        }
 		
 	}
 }
