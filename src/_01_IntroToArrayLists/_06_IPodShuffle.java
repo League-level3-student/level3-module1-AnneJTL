@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -25,16 +24,18 @@ public class _06_IPodShuffle implements ActionListener {
     private Song songToPlay = null;
 
 
-    public _06_IPodShuffle() {
+    private _06_IPodShuffle() {
 
         // 1. Use the Song class the play the demo.mp3 file.
+        int duration;
         Song myFavoriteSong = new Song("Songs/demo.mp3", "unknown", "unknown");
-        myFavoriteSong.setDuration(1);
+        duration = 1;
+        myFavoriteSong.setDuration(duration);
         songSingerValue.setText(myFavoriteSong.getSinger());
         songTitleValue.setText(myFavoriteSong.getTitle());
         myFavoriteSong.play();
-				
-		/**
+
+        /*
 		 * 2. Congratulations on completing the sound check! * Now we want to make an
 		 * iPod Shuffle that plays random music. * Create an ArrayList of Songs and a
 		 * "Surprise Me!" button that will play a random song when it is clicked. * If
@@ -49,10 +50,10 @@ public class _06_IPodShuffle implements ActionListener {
 		new _06_IPodShuffle();
 	}
 
-    void initGUI() {
+    private void initGUI() {
         window.setSize(300, 300);
         panel.setBackground(Color.DARK_GRAY);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Dimension dimLabel = new Dimension(250, 30);
 
         songSinger.setPreferredSize(dimLabel);

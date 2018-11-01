@@ -7,7 +7,7 @@ import java.net.URL;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
 
-public class Song {
+class Song {
 	private int duration;
 	private String songAddress;
 	private AdvancedPlayer mp3Player;
@@ -24,21 +24,21 @@ public class Song {
 	Vampires of the City/03 Step.mp3"); * new
 	Song("http://freedownloads.last.fm/download/569264057/Get%2BGot.mp3"); * </code>
 	 */
-	public Song(String songAddress, String singer, String title) {
+    Song(String songAddress, String singer, String title) {
 		this.songAddress = songAddress;
 		this.singer = singer;
 		this.title = title;
 	}
 
-	public String getTitle() {
+    String getTitle() {
 		return "     " + title;
 	}
 
-	public String getSinger() {
+    String getSinger() {
 		return "     " + singer;
 	}
 
-	public void play() {
+    void play() {
 		loadFile();
 		if (songStream != null) {
 			loadPlayer();
@@ -47,29 +47,27 @@ public class Song {
 			System.err.println("Unable to load file: " + songAddress);
 	}
 
-	public void setDuration(int seconds) {
+    void setDuration(int seconds) {
 		this.duration = seconds * 100;
 	}
 
-	public void stop() {
+    void stop() {
 		if (mp3Player != null)
 			mp3Player.close();
 	}
 
 	private void startSong() {
-		Thread t = new Thread() {
-			public void run() {
-				try {
-					if (duration > 0) {
-						mp3Player.play(duration);
-					} else {
-						mp3Player.play();
-					}
-				} catch (Exception e) {
-
-				}
-			}
-		};
+        Thread t = new Thread(() -> {
+            try {
+                if (duration > 0) {
+                    mp3Player.play(duration);
+                } else {
+                    mp3Player.play();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 		t.start();
 	}
 
@@ -77,6 +75,7 @@ public class Song {
 		try {
 			this.mp3Player = new AdvancedPlayer(songStream);
 		} catch (Exception e) {
+            e.printStackTrace();
 		}
 	}
 
