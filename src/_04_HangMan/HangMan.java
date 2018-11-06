@@ -1,7 +1,5 @@
 package _04_HangMan;
 
-import jdk.nashorn.internal.scripts.JO;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -73,6 +71,8 @@ public class HangMan implements KeyListener {
     }
 
     int initPlay() {
+        // Return 0: Continue
+        // Return 1: All words find- You win- Game over
         System.out.println("initPlay");
         guessWord = new String();
         allBadCharacters = new String();
@@ -84,13 +84,10 @@ public class HangMan implements KeyListener {
             wordToFind = listOfWords.pop();
             System.out.println("The word is " + wordToFind);
         } else {
-            JOptionPane.showMessageDialog(null, "You find all the words");
-            HangManGame.continueGame = JOptionPane.showConfirmDialog(null,
-                    "Do you want to play another time?", "You WIN!",
-                    JOptionPane.YES_NO_OPTION);
-            System.out.println("oui ou non: " + HangManGame.continueGame);
-            if (HangManGame.continueGame == 1)
-                return 1;
+            // All words were find.
+            // This HangMan is finished
+            System.out.println("avant return 8");
+            return 8;
         }
 
 
@@ -174,7 +171,6 @@ public class HangMan implements KeyListener {
             if (!guessWord.contains(GUESS_CHAR.toString())) {
                 JOptionPane.showMessageDialog(null, "You find the word. Now, find the next one!");
                 nbWordsFound++;
-
                 initPlay();
             }
         } else {
@@ -184,7 +180,7 @@ public class HangMan implements KeyListener {
             nbLivesLabel.setText(Integer.toString(nbLives));
             if (nbLives == 0) {
                 JOptionPane.showMessageDialog(null, "You loose all yours lives! GAME OVER");
-                return;
+                //return;
             }
         }
     }
