@@ -1,21 +1,17 @@
 package _06_Intro_To_Hash_Maps;
 
-import jdk.nashorn.internal.scripts.JO;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 public class _02_LogSearch implements ActionListener {
-    JFrame window;
-    JPanel panel;
-    JButton addButton, searchButton, viewButton, removeButton;
+    private JButton addButton, searchButton, viewButton, removeButton;
 
     /* Crate a HashMap of Integers for the keys and Strings for the values.*/
-    HashMap<Integer, String> logSearch = new HashMap<>();
+    private HashMap<Integer, String> logSearch = new HashMap<>();
 
-    public _02_LogSearch() {
+    _02_LogSearch() {
         initializeGUI();
     }
 
@@ -25,6 +21,9 @@ public class _02_LogSearch implements ActionListener {
 
     /* * Create a GUI with three buttons. */
     private void initializeGUI() {
+        JFrame window;
+        JPanel panel;
+
         window = new JFrame("LogSearch HashMap");
         panel = new JPanel();
 
@@ -46,7 +45,7 @@ public class _02_LogSearch implements ActionListener {
         panel.add(viewButton);
 
         window.add(panel);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.pack();
         window.setVisible(true);
 
@@ -83,8 +82,7 @@ public class _02_LogSearch implements ActionListener {
         }
         String answer = JOptionPane.showInputDialog("Enter an ID number");
         Integer searchID = castID(answer);
-        if (searchID == -1) {
-        } else {
+        if (searchID != -1) {
             for (Integer ID : logSearch.keySet()) {
                 if (ID.equals(searchID)) {
                     JOptionPane.showMessageDialog(null,
@@ -105,16 +103,16 @@ public class _02_LogSearch implements ActionListener {
      *
      * When this is complete, add a fourth button to your window.*/
     private void viewList() {
-        String allvalues = "";
+        StringBuilder allvalues = new StringBuilder();
 
         if (logSearch.isEmpty()) {
-            allvalues = "There is no entry.";
+            allvalues = new StringBuilder("There is no entry.");
         } else {
             for (Integer ID : logSearch.keySet()) {
-                allvalues += "ID: " + ID + " Name: " + logSearch.get(ID) + "\n";
+                allvalues.append("ID: ").append(ID).append(" Name: ").append(logSearch.get(ID)).append("\n");
             }
         }
-        JOptionPane.showMessageDialog(null, allvalues);
+        JOptionPane.showMessageDialog(null, allvalues.toString());
     }
 
     /* Button 4: Remove Entry
@@ -124,7 +122,7 @@ public class _02_LogSearch implements ActionListener {
      *
      * */
     private void removeEntry() {
-        String allvalues = "";
+        String allvalues;
 
         if (logSearch.isEmpty()) {
             allvalues = "There is no entry.";
